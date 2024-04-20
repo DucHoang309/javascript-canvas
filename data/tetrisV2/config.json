@@ -1,0 +1,25 @@
+{
+    "canvas": {
+        "width": 300,
+        "height": 400
+    },
+    "block": {
+        "width": 25,
+        "colors": [
+            "black",
+            "purple",
+            "red",
+            "blue",
+            "green",
+            "pink"
+        ]
+    },
+    "shapes": [
+        "T",
+        "L",
+        "Square",
+        "I",
+        "S"
+    ],
+    "interval": 500
+}

@@ -1,0 +1,48 @@
+{
+  "name": "javascript-canvas",
+  "version": "1.0.0",
+  "description": "Canvas",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --env.mode=development --config webpack.config.js",
+    "production": "webpack --env.mode=production --config webpack.config.js",
+    "watch": "webpack --env.mode=development --watch --config webpack.config.js",
+    "compile:scss": "webpack --env.mode=development --env.target=scss --config webpack.config.js",
+    "compile:js": "webpack --env.mode=development --env.target=js --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DucHoang309/javascript-canvas.git"
+  },
+  "author": "DucHoang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DucHoang309/javascript-canvas/issues"
+  },
+  "homepage": "https://github.com/DucHoang309/javascript-canvas#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.2",
+    "css-loader": "^2.1.1",
+    "cssnano": "^4.1.11",
+    "del-cli": "^3.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "postcss-loader": "^2.1.5",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^4.2.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "bootstrap": "^4.6.2",
+    "popper.js": "^1.16.1",
+    "jquery": "^3.6.0"
+  }
+}
