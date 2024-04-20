@@ -22,6 +22,14 @@ function Shape(x, y) {
 }
 
 /**
+ * Set X coord
+ * @param {number} x - X coord
+ */
+Shape.prototype.setX = function (x) {
+    this.x = x;
+};
+
+/**
  * Set shape direction
  * @param {number} direction - Shape direction
  */
@@ -47,6 +55,14 @@ Shape.prototype.setBlueprint = function (blueprint) {
  */
 Shape.prototype.setColor = function (color) {
     this.color = color;
+};
+
+/**
+ * Set new matrix
+ * @param {Array<Array<number>>} matrix - Shape matrix
+ */
+Shape.prototype.setMatrix = function (matrix) {
+    this.matrix = matrix;
 };
 
 /**
@@ -106,18 +122,44 @@ Shape.prototype.goBottom = function () {
 };
 
 /**
- * Shape rotate by direction
+ * Rotate by math from left to right
  */
 Shape.prototype.rotate = function () {
-    this.setDirection(++this.direction);
+    let tempShape = this.cloneTemporaryRotatedShape();
+    this.setMatrix(tempShape.matrix);
     this.destroy();
     this.initBlocks();
 };
 
 /**
- * Rotate by math from left to right
+ * Clone this shape
+ * @returns {Shape} - Return a clone
  */
-Shape.prototype.rotateByMath = function () {
+Shape.prototype.clone = function () {
+    let clone = new Shape(0, 0);
+    Object.getOwnPropertyNames(this).forEach(prop => {
+        clone[prop] = this[prop];
+    });
+    return clone;
+};
+
+/**
+ * Copy a input shape to this shape
+ * @param {Shape} shape - a shape
+ */
+Shape.prototype.copyFrom = function (shape) {
+    Object.getOwnPropertyNames(this).forEach(prop => {
+        if (shape && shape[prop]) {
+            this[prop] = shape[prop];
+        }
+    });
+};
+
+/**
+ * Rotate and return a new temporary shape matrix
+ * @returns {Shape} - A new temporary shape matrix
+ */
+Shape.prototype.cloneTemporaryRotatedShape = function () {
     let oldWidth = this.matrix[0].length;
     let oldHeight = this.matrix.length;
     let newMatrix = Array.from({ length: oldWidth }, () => {
@@ -133,10 +175,10 @@ Shape.prototype.rotateByMath = function () {
         }
     }
 
-    this.matrix = newMatrix;
-    
-    this.destroy();
-    this.initBlocks();
+    let newShape = this.clone();
+    newShape.setMatrix(newMatrix);
+
+    return newShape;
 };
 
 module.exports = Shape;

@@ -66,6 +66,17 @@ Board.prototype.isShapeCollideRight = function (shape) {
 };
 
 /**
+ * Check if a shape is collapsing on a pinned block
+ * @param {Shape} shape - a Shape
+ * @returns {boolean} - Return true/false
+ */
+Board.prototype.isShapeCollapseOnPinnedBlock = function (shape) {
+    return shape.blocks.some(block => {
+        return this.matrix[block.y][block.x] !== null
+    })
+};
+
+/**
  * Get the index of full row
  * @returns {number} - Return full row index
  */
@@ -89,9 +100,8 @@ Board.prototype.destroyFullRow = function () {
     let fullIdx = this.getFullRowIndex();
     if (fullIdx !== -1) {
         for (let idx = fullIdx; idx > 0; idx--) {
-            this.matrix[idx] = this.matrix[idx - 1];
-
             // Push block down
+            this.matrix[idx] = this.matrix[idx - 1];
             this.matrix[idx].forEach(block => {
                 if (block !== null) block.goBottom();
             });
