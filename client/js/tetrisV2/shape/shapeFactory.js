@@ -49,11 +49,19 @@ ShapeFactory.getRandomShape = function () {
     let shapeBlueprint = randomShapeConfig.blueprint;
     let randomDirection = shapeBlueprint.randomIndex();
     let randomColor = GAME_CONFIG.block.colors.random();
-    let randomX = Math.floor(Math.random() * (GAME_CONFIG.canvas.width / GAME_CONFIG.block.width));
+    let maxWidthX = GAME_CONFIG.canvas.width / GAME_CONFIG.block.width;
+    let randomX = Math.floor(Math.random() * maxWidthX);
     let shape = new Shape(randomX, -1);
 
     shape.setBlueprint(shapeBlueprint);
     shape.setDirection(randomDirection);
+    shape.calcHeightWidth();
+
+    if (randomX + shape.width >= maxWidthX) {
+        randomX = maxWidthX - shape.width;
+        shape.setX(randomX);
+    }
+
     shape.setColor(randomColor);
     shape.initBlocks();
 

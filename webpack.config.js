@@ -119,7 +119,8 @@ module.exports = env => {
             break;
     
         default:
-            EXPORT_CONFIG.push(getSCSSConfig(), getJSConfig());
+            // EXPORT_CONFIG.push(getSCSSConfig(), getJSConfig());
+            EXPORT_CONFIG.push(getJSConfig());
             break;
     }
 

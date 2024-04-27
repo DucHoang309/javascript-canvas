@@ -14,7 +14,8 @@ function Shape(x, y) {
     this.blueprint = null;
     this.matrix = null;
     this.color = 'black';
-
+    this.height = 0;
+    this.width = 0;
     /**
      * @var {Array<Block>}
      */
@@ -27,6 +28,16 @@ function Shape(x, y) {
  */
 Shape.prototype.setX = function (x) {
     this.x = x;
+};
+
+/**
+ * Calculate shape height and width
+ */
+Shape.prototype.calcHeightWidth = function () {
+    if (this.matrix === null) return;
+
+    this.height = this.matrix.length;
+    this.width = this.matrix[0].length;
 };
 
 /**
